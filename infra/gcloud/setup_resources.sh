@@ -56,7 +56,7 @@ function retry {
 echo "setting up the cloud resources for ecluster $CLUSTER_NAME in project $PROJECT_ID"
 
 export SLEEP="sleep 2"
-# CLI-DOC-GEN-START
+
 gcloud config set project $PROJECT_ID
 
 # enable secret manager
@@ -73,7 +73,7 @@ gcloud iam service-accounts create $CLUSTER_NAME-vt --display-name=$CLUSTER_NAME
 
 echo "creating namespace $NAMESPACE for project $PROJECT_ID"
 
-curl https://raw.githubusercontent.com/jenkins-x-labs/cloud-resources/master/gcloud/setup.yaml | sed "s/{namespace}/$NAMESPACE/" | sed "s/{project_id}/$PROJECT_ID/" | sed "s/{cluster_name}/$CLUSTER_NAME/" | kubectl apply --validate=false -f -
+cat setup.yaml.tmpl | sed "s/{namespace}/$NAMESPACE/" | sed "s/{project_id}/$PROJECT_ID/" | sed "s/{cluster_name}/$CLUSTER_NAME/" | kubectl apply --validate=false -f -
 
 # change to the new jx namespace
 jx ns $NAMESPACE
@@ -251,6 +251,4 @@ retry gcloud projects add-iam-policy-binding $PROJECT_ID \
   --role roles/cloudkms.cryptoKeyEncrypterDecrypter \
   --member "serviceAccount:$CLUSTER_NAME-vt@$PROJECT_ID.iam.gserviceaccount.com" \
   --project $PROJECT_ID
-
-# CLI-DOC-GEN-END
 
