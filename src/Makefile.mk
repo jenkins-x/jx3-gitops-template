@@ -17,7 +17,7 @@ init:
 .PHONY: fetch
 fetch: init
 	jx gitops repository --source-dir $(OUTPUT_DIR)/namespaces
-	jx gitops jx-apps template --template-values src/fake-secrets.yaml -o $(OUTPUT_DIR)/namespaces
+	jx gitops jx-apps template --template-values src/fake-secrets.yaml.txt -o $(OUTPUT_DIR)/namespaces
 	jx gitops namespace --dir-mode --dir $(OUTPUT_DIR)/namespaces
 
 	# disable cert manager validation of webhooks due to cert issues
