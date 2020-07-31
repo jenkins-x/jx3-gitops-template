@@ -84,16 +84,16 @@ kubectl config set-context --current --namespace=$NAMESPACE
 retry gcloud iam service-accounts add-iam-policy-binding --quiet \
   --role roles/iam.workloadIdentityUser \
   --member "serviceAccount:$PROJECT_ID.svc.id.goog[$NAMESPACE/external-dns]" \
-  $CLUSTER_NAME-ex@$PROJECT_ID.iam.gserviceaccount.com \
+  $CLUSTER_NAME-dn@$PROJECT_ID.iam.gserviceaccount.com \
   --project $PROJECT_ID
 
 retry gcloud projects add-iam-policy-binding $PROJECT_ID \
   --role roles/dns.admin \
-  --member "serviceAccount:$CLUSTER_NAME-ex@$PROJECT_ID.iam.gserviceaccount.com" \
+  --member "serviceAccount:$CLUSTER_NAME-dn@$PROJECT_ID.iam.gserviceaccount.com" \
   --project $PROJECT_ID
 
 
-# jx boot
+# jx boot - TODO still need?
 retry gcloud iam service-accounts add-iam-policy-binding --quiet \
   --role roles/iam.workloadIdentityUser \
   --member "serviceAccount:$PROJECT_ID.svc.id.goog[$NAMESPACE/jxl-boot]" \
@@ -178,37 +178,37 @@ retry gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member "serviceAccount:$CLUSTER_NAME-sm@$PROJECT_ID.iam.gserviceaccount.com" \
   --project $PROJECT_ID
 
-# storage
+# storage - for build controller to store logs etc
 retry gcloud iam service-accounts add-iam-policy-binding --quiet \
   --role roles/iam.workloadIdentityUser \
   --member "serviceAccount:$PROJECT_ID.svc.id.goog[$NAMESPACE/storage-sa]" \
-  $CLUSTER_NAME-st@$PROJECT_ID.iam.gserviceaccount.com \
+  $CLUSTER_NAME-bc@$PROJECT_ID.iam.gserviceaccount.com \
   --project $PROJECT_ID
 
 retry gcloud iam service-accounts add-iam-policy-binding --quiet \
   --role roles/iam.workloadIdentityUser \
   --member "serviceAccount:$PROJECT_ID.svc.id.goog[$NAMESPACE/bucketrepo-bucketrepo]" \
-  $CLUSTER_NAME-st@$PROJECT_ID.iam.gserviceaccount.com \
+  $CLUSTER_NAME-bc@$PROJECT_ID.iam.gserviceaccount.com \
   --project $PROJECT_ID
 
 retry gcloud iam service-accounts add-iam-policy-binding --quiet \
   --role roles/iam.workloadIdentityUser \
   --member "serviceAccount:$PROJECT_ID.svc.id.goog[$NAMESPACE/jxboot-helmfile-resources-controllerbuild]" \
-  $CLUSTER_NAME-st@$PROJECT_ID.iam.gserviceaccount.com \
+  $CLUSTER_NAME-bc@$PROJECT_ID.iam.gserviceaccount.com \
   --project $PROJECT_ID
 
 
 retry gcloud projects add-iam-policy-binding $PROJECT_ID \
   --role roles/storage.admin \
-  --member "serviceAccount:$CLUSTER_NAME-st@$PROJECT_ID.iam.gserviceaccount.com" \
+  --member "serviceAccount:$CLUSTER_NAME-bc@$PROJECT_ID.iam.gserviceaccount.com" \
   --project $PROJECT_ID
 
 retry gcloud projects add-iam-policy-binding $PROJECT_ID \
   --role roles/storage.objectAdmin \
-  --member "serviceAccount:$CLUSTER_NAME-st@$PROJECT_ID.iam.gserviceaccount.com" \
+  --member "serviceAccount:$CLUSTER_NAME-bc@$PROJECT_ID.iam.gserviceaccount.com" \
   --project $PROJECT_ID
 
-# velero
+# velero - TODO - still needed? could use -bc?
 retry gcloud iam service-accounts add-iam-policy-binding --quiet \
   --role roles/iam.workloadIdentityUser \
   --member "serviceAccount:$PROJECT_ID.svc.id.goog[$NAMESPACE/velero-sa]" \
