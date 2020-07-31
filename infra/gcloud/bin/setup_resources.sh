@@ -139,31 +139,31 @@ retry gcloud projects add-iam-policy-binding $PROJECT_ID \
 retry gcloud iam service-accounts add-iam-policy-binding --quiet \
   --role roles/iam.workloadIdentityUser \
   --member "serviceAccount:$PROJECT_ID.svc.id.goog[$NAMESPACE/tekton-bot]" \
-  $CLUSTER_NAME-tk@$PROJECT_ID.iam.gserviceaccount.com \
+  $CLUSTER_NAME-tekton@$PROJECT_ID.iam.gserviceaccount.com \
   --project $PROJECT_ID
 
 retry gcloud projects add-iam-policy-binding $PROJECT_ID \
   --role roles/viewer \
-  --member "serviceAccount:$CLUSTER_NAME-tk@$PROJECT_ID.iam.gserviceaccount.com" \
+  --member "serviceAccount:$CLUSTER_NAME-tekton@$PROJECT_ID.iam.gserviceaccount.com" \
 
 retry gcloud projects add-iam-policy-binding $PROJECT_ID \
   --role roles/storage.admin \
-  --member "serviceAccount:$CLUSTER_NAME-tk@$PROJECT_ID.iam.gserviceaccount.com" \
+  --member "serviceAccount:$CLUSTER_NAME-tekton@$PROJECT_ID.iam.gserviceaccount.com" \
   --project $PROJECT_ID
 
 retry gcloud projects add-iam-policy-binding $PROJECT_ID \
   --role roles/storage.objectAdmin \
-  --member "serviceAccount:$CLUSTER_NAME-tk@$PROJECT_ID.iam.gserviceaccount.com" \
+  --member "serviceAccount:$CLUSTER_NAME-tekton@$PROJECT_ID.iam.gserviceaccount.com" \
   --project $PROJECT_ID
 
 retry gcloud projects add-iam-policy-binding $PROJECT_ID \
   --role roles/storage.objectCreator \
-  --member "serviceAccount:$CLUSTER_NAME-tk@$PROJECT_ID.iam.gserviceaccount.com" \
+  --member "serviceAccount:$CLUSTER_NAME-tekton@$PROJECT_ID.iam.gserviceaccount.com" \
   --project $PROJECT_ID
 
 retry gcloud projects add-iam-policy-binding $PROJECT_ID \
   --role roles/secretmanager.secretAccessor \
-  --member "serviceAccount:$CLUSTER_NAME-tk@$PROJECT_ID.iam.gserviceaccount.com" \
+  --member "serviceAccount:$CLUSTER_NAME-tekton@$PROJECT_ID.iam.gserviceaccount.com" \
   --project $PROJECT_ID
 
 # secret manager
