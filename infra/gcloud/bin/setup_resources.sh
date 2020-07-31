@@ -63,13 +63,15 @@ gcloud config set project $PROJECT_ID
 gcloud services enable secretmanager.googleapis.com
 
 # setup the service accounts
-gcloud iam service-accounts create $CLUSTER_NAME-ex --display-name=$CLUSTER_NAME-ex --project $PROJECT_ID
-gcloud iam service-accounts create $CLUSTER_NAME-jb --display-name=$CLUSTER_NAME-jb --project $PROJECT_ID
+gcloud iam service-accounts create $CLUSTER_NAME-bc --display-name=$CLUSTER_NAME-bc --project $PROJECT_ID
+gcloud iam service-accounts create $CLUSTER_NAME-dn --display-name=$CLUSTER_NAME-dn --project $PROJECT_ID
 gcloud iam service-accounts create $CLUSTER_NAME-sm --display-name=$CLUSTER_NAME-sm --project $PROJECT_ID
-gcloud iam service-accounts create $CLUSTER_NAME-st --display-name=$CLUSTER_NAME-st --project $PROJECT_ID
-gcloud iam service-accounts create $CLUSTER_NAME-tk --display-name=$CLUSTER_NAME-tk --project $PROJECT_ID
-gcloud iam service-accounts create $CLUSTER_NAME-vo --display-name=$CLUSTER_NAME-vo --project $PROJECT_ID
+gcloud iam service-accounts create $CLUSTER_NAME-tekton --display-name=$CLUSTER_NAME-tekton --project $PROJECT_ID
 gcloud iam service-accounts create $CLUSTER_NAME-vt --display-name=$CLUSTER_NAME-vt --project $PROJECT_ID
+
+# TODO - still needed?
+gcloud iam service-accounts create $CLUSTER_NAME-jb --display-name=$CLUSTER_NAME-jb --project $PROJECT_ID
+gcloud iam service-accounts create $CLUSTER_NAME-vo --display-name=$CLUSTER_NAME-vo --project $PROJECT_ID
 
 echo "creating namespace $NAMESPACE for project $PROJECT_ID"
 
