@@ -75,7 +75,7 @@ gcloud iam service-accounts create $CLUSTER_NAME-vo --display-name=$CLUSTER_NAME
 
 echo "creating namespace $NAMESPACE for project $PROJECT_ID"
 
-cat setup.yaml.tmpl | sed "s/{namespace}/$NAMESPACE/" | sed "s/{project_id}/$PROJECT_ID/" | sed "s/{cluster_name}/$CLUSTER_NAME/" | kubectl apply --validate=false -f -
+cat `dirname "$0"`/setup.yaml.tmpl | sed "s/{namespace}/$NAMESPACE/" | sed "s/{project_id}/$PROJECT_ID/" | sed "s/{cluster_name}/$CLUSTER_NAME/" | kubectl apply --validate=false -f -
 
 # change to the new jx namespace
 jx ns $NAMESPACE
