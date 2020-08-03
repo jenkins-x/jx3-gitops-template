@@ -20,7 +20,7 @@ fi
 
 echo "this script modifies the `dirname "$0"`/setenv.sh file..."
 
-sed -i "" -e "s/PROJECT_ID=\".*\"/PROJECT_ID=\"${PROJECT_ID}\"/" `dirname "$0"`/setenv.sh
-sed -i "" -e "s/CLUSTER_NAME=\".*\"/CLUSTER_NAME=\"${CLUSTER_NAME}\"/" `dirname "$0"`/setenv.sh
+sed -i -e "s/PROJECT_ID=\".*\"/PROJECT_ID=\"${PROJECT_ID}\"/" `dirname "$0"`/setenv.sh
+sed -i -e "s/CLUSTER_NAME=\".*\"/CLUSTER_NAME=\"${CLUSTER_NAME}\"/" `dirname "$0"`/setenv.sh
 
 
