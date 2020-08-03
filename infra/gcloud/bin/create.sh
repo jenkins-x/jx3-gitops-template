@@ -31,7 +31,7 @@ gcloud beta container clusters create $CLUSTER_NAME \
  --min-nodes=1 \
  --max-nodes=3 \
  --project=$PROJECT_ID \
- --identity-namespace=$PROJECT_ID.svc.id.goog \
+ --workload-pool=$PROJECT_ID.svc.id.goog \
  --region=$ZONE \
  --labels=$LABELS \
  --machine-type=n1-standard-4 \
