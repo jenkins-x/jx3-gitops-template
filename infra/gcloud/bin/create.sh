@@ -5,6 +5,8 @@ set -e
 ZONE=${ZONE:-europe-west1-b}
 LABELS=${LABELS:-mylabel=foo}
 
+source `dirname "$0"`/setenv.sh
+
 if [ -z $PROJECT_ID ]
 then
   echo "Please supply the 'PROJECT_ID' environment variable for your GCP Project ID"
