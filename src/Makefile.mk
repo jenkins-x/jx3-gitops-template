@@ -20,7 +20,14 @@ init:
 fetch: init
 	# TODO do we need this?
 	jx gitops repository --source-dir $(OUTPUT_DIR)/namespaces
+
+	# lets resolve chart versions and values from the version stream
 	jx gitops helmfile resolve
+
+	# not sure why we need this...
+	helm repo add jx http://chartmuseum.jenkins-x.io
+
+	# generate the yaml from the charts in helmfile.yaml
 	helmfile template --args=--include-crds --output-dir $(TMP_TEMPLATE_DIR)
 
 	# split the files into one file per resource
