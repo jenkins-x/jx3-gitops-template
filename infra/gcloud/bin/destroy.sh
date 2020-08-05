@@ -20,11 +20,11 @@ then
   exit 1
 fi
 
-gcloud iam service-accounts delete $CLUSTER_NAME-dn@$PROJECT_ID.iam.gserviceaccount.com --quiet
-gcloud iam service-accounts delete $CLUSTER_NAME-jb@$PROJECT_ID.iam.gserviceaccount.com --quiet
-gcloud iam service-accounts delete $CLUSTER_NAME-bc@$PROJECT_ID.iam.gserviceaccount.com --quiet
-gcloud iam service-accounts delete $CLUSTER_NAME-tekton@$PROJECT_ID.iam.gserviceaccount.com --quiet
-gcloud iam service-accounts delete $CLUSTER_NAME-vo@$PROJECT_ID.iam.gserviceaccount.com --quiet
-gcloud iam service-accounts delete $CLUSTER_NAME-vt@$PROJECT_ID.iam.gserviceaccount.com --quiet
+gcloud iam service-accounts delete $CLUSTER_NAME-dn@$PROJECT_ID.iam.gserviceaccount.com --project $PROJECT_ID --quiet
+gcloud iam service-accounts delete $CLUSTER_NAME-jb@$PROJECT_ID.iam.gserviceaccount.com --project $PROJECT_ID --quiet
+gcloud iam service-accounts delete $CLUSTER_NAME-bc@$PROJECT_ID.iam.gserviceaccount.com --project $PROJECT_ID --quiet
+gcloud iam service-accounts delete $CLUSTER_NAME-tekton@$PROJECT_ID.iam.gserviceaccount.com --project $PROJECT_ID --quiet
+gcloud iam service-accounts delete $CLUSTER_NAME-vo@$PROJECT_ID.iam.gserviceaccount.com --project $PROJECT_ID --quiet
+gcloud iam service-accounts delete $CLUSTER_NAME-vt@$PROJECT_ID.iam.gserviceaccount.com --project $PROJECT_ID --quiet
 
 gcloud container clusters delete $CLUSTER_NAME --project $PROJECT_ID --zone $ZONE --quiet
