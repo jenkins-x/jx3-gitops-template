@@ -26,6 +26,7 @@ kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/src@master src
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/git-operator@master .jx/git-operator
 git add *
 git commit -a -m "chore: latest from template"
+git push
 
 
 cd $TMPDIR
@@ -41,6 +42,7 @@ kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/src@master src
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/git-operator@master .jx/git-operator
 git add *
 git commit -a -m "chore: latest from template"
+git push
 
 
 #for r in "${repos[@]}"
