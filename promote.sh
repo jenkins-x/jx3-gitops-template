@@ -9,6 +9,7 @@ echo "promoting changes in jx3-gitops-template to downstream templates"
 declare -a repos=("jx3-gke-gcloud-vault")
 
 export TMPDIR=/tmp/jx3-gitops-promote
+rm -rf $TMPDIR
 mkdir -p $TMPDIR
 
 
