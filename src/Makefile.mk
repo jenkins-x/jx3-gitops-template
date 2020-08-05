@@ -28,7 +28,7 @@ fetch: init
 	helm repo add jx http://chartmuseum.jenkins-x.io
 
 	# generate the yaml from the charts in helmfile.yaml
-	helmfile template --args=--include-crds --output-dir $(TMP_TEMPLATE_DIR)
+	helmfile --debug template  -args=--include-crds --output-dir $(TMP_TEMPLATE_DIR)
 
 	# split the files into one file per resource
 	jx gitops split --dir $(TMP_TEMPLATE_DIR)
