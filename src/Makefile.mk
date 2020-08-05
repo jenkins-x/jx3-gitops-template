@@ -1,4 +1,5 @@
 FETCH_DIR := build/base
+TMP_TEMPLATE_DIR := build/tmp
 OUTPUT_DIR := config-root
 
 .PHONY: clean
@@ -7,6 +8,7 @@ clean:
 
 init:
 	mkdir -p $(FETCH_DIR)
+	mkdir -p $(TMP_TEMPLATE_DIR)
 	mkdir -p $(OUTPUT_DIR)/namespaces/jx
 	cp -r src/* build
 	mkdir -p $(FETCH_DIR)/cluster/crds
@@ -16,9 +18,24 @@ init:
 
 .PHONY: fetch
 fetch: init
+	# TODO do we need this?
 	jx gitops repository --source-dir $(OUTPUT_DIR)/namespaces
-	jx gitops jx-apps template --template-values src/fake-secrets.yaml.txt -o $(OUTPUT_DIR)/namespaces
-	jx gitops namespace --dir-mode --dir $(OUTPUT_DIR)/namespaces
+	jx gitops helmfile resolve
+	helmfile template --args=--include-crds --output-dir $(TMP_TEMPLATE_DIR)
+
+	# split the files into one file per resource
+	jx gitops split --dir $(TMP_TEMPLATE_DIR)
+
+	# convert k8s Secrets => ExternalSecret resources
+	jx gitops secretsmapping --dir $(TMP_TEMPLATE_DIR)
+
+	# move the templated files to correct cluster or namespace folder
+	# setting the namespace on namespaced resources
+	jx gitops helmfile move --dir $(TMP_TEMPLATE_DIR) --output-dir $(OUTPUT_DIR)
+
+	# old approach
+	#jx gitops jx-apps template --template-values src/fake-secrets.yaml.txt -o $(OUTPUT_DIR)/namespaces
+	#jx gitops namespace --dir-mode --dir $(OUTPUT_DIR)/namespaces
 
 	# disable cert manager validation of webhooks due to cert issues
 	#jx gitops label --kind Namespace cert-manager.io/disable-validation=true
