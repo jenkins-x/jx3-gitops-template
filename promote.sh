@@ -45,6 +45,22 @@ git commit -a -m "chore: latest from template"
 git push
 
 
+cd $TMPDIR
+export r="jx3-kind-vault"
+
+cd $TMPDIR
+git clone https://github.com/jx3-gitops-repositories/$r.git
+cd $r
+rm -rf src
+
+rm -rf src .jx/git-operator
+kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/src@master src
+kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/git-operator@master .jx/git-operator
+git add *
+git commit -a -m "chore: latest from template"
+git push
+
+
 #for r in "${repos[@]}"
 #do
 #  echo "upgrading repository https://github.com/jx3-gitops-repositories/$r"
