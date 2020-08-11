@@ -24,7 +24,7 @@ kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/gitops/vaul
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/git-operator@master .jx/git-operator
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/src@master src
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/infra/gcloud/bin@master bin
-git add *
+git add .jx src *
 git commit -a -m "chore: latest from template"
 git push
 
@@ -40,7 +40,7 @@ rm -rf src .jx/git-operator .jx/gitops
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/gitops/vault/gitops@master .jx/gitops
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/git-operator@master .jx/git-operator
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/src@master src
-git add *
+git add .jx src *
 git commit -a -m "chore: latest from template"
 git push
 
@@ -56,7 +56,7 @@ rm -rf src .jx/git-operator .jx/gitops
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/git-operator@master .jx/git-operator
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/gitops/vault/gitops@master .jx/gitops
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/src@master src
-git add *
+git add .jx src *
 git commit -a -m "chore: latest from template"
 git push
 
