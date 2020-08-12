@@ -21,7 +21,7 @@ init:
 .PHONY: fetch
 fetch: init
 	# TODO do we need this?
-	#jx gitops repository --source-dir $(OUTPUT_DIR)/namespaces
+	jx gitops repository --source-dir $(OUTPUT_DIR)/namespaces
 
 	# lets resolve chart versions and values from the version stream
 	jx gitops helmfile resolve
