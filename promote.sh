@@ -19,6 +19,7 @@ cd $TMPDIR
 git clone https://github.com/jx3-gitops-repositories/$r.git
 cd $r
 
+mkdir -p .jx/secret/mapping
 rm -rf bin src .jx/git-operator .jx/secret/mapping
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/secret/vault/mapping@master .jx/secret/mapping
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/git-operator@master .jx/git-operator
@@ -36,6 +37,7 @@ cd $TMPDIR
 git clone https://github.com/jx3-gitops-repositories/$r.git
 cd $r
 
+mkdir -p .jx/secret/mapping
 rm -rf src .jx/git-operator .jx/secret/mapping
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/secret/vault/mapping@master .jx/secret/mapping
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/git-operator@master .jx/git-operator
@@ -52,6 +54,7 @@ cd $TMPDIR
 git clone https://github.com/jx3-gitops-repositories/$r.git
 cd $r
 
+mkdir -p .jx/secret/mapping
 rm -rf src .jx/git-operator .jx/secret/mapping
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/git-operator@master .jx/git-operator
 kpt pkg get https://github.com/jenkins-x/jx3-gitops-template.git/.jx/secret/vault/mapping@master .jx/secret/mapping
