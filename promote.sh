@@ -26,5 +26,7 @@ do
   git clone https://github.com/jx3-gitops-repositories/$r.git
   cd "$r"
   jx gitops kpt update || true
+  git add * || true
+  git commit -a -m "chore: upgrade version stream" || true
   git push || true
 done
