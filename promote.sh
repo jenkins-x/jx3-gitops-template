@@ -7,7 +7,7 @@ echo "promoting changes in jx3-gitops-template to downstream templates"
 
 declare -a repos=(
   # GKE
-  "jx3-gke-gcloud-vault" "jx3-gke-terraform-vault"
+  "jx3-gke-terraform-vault" "jx3-gke-gcloud-vault" 
   # EKS
   "jx3-eks-terraform-vault"
   # local
