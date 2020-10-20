@@ -18,9 +18,12 @@ then
   exit 1
 fi
 
-echo "this script modifies the `dirname "$0"`/setenv.sh file..."
+DIR2=dirname "$0"
+DIR="$(dirname "${BASH_SOURCE[0]}")"
 
-sed -i -e "s/PROJECT_ID=\".*\"/PROJECT_ID=\"${PROJECT_ID}\"/" `dirname "$0"`/setenv.sh
-sed -i -e "s/CLUSTER_NAME=\".*\"/CLUSTER_NAME=\"${CLUSTER_NAME}\"/" `dirname "$0"`/setenv.sh
+echo "this script modifies the ${DIR}/setenv.sh file..."
+
+sed -i -e "s/PROJECT_ID=\".*\"/PROJECT_ID=\"${PROJECT_ID}\"/" ${DIR}/setenv.sh
+sed -i -e "s/CLUSTER_NAME=\".*\"/CLUSTER_NAME=\"${CLUSTER_NAME}\"/" ${DIR}/setenv.sh
 
 
