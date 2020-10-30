@@ -25,7 +25,7 @@ spec:
 {{- end }}
           livenessProbe:
             httpGet:
-              path: {{ .Values.probePath }}
+              path: {{ .Values.livenessProbe.probePath | default .Values.probePath }}
             initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
             successThreshold: {{ .Values.livenessProbe.successThreshold }}
@@ -33,7 +33,7 @@ spec:
           readinessProbe:
             failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
             httpGet:
-              path: {{ .Values.probePath }}
+              path: {{ .Values.readinessProbe.probePath | default .Values.probePath }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
             successThreshold: {{ .Values.readinessProbe.successThreshold }}
             timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
