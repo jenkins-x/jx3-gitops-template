@@ -1,9 +1,5 @@
-environments:
-  default:
-    values:
-    - jx-values.yaml
 releases:
-- chart: '../{{ requiredEnv "APP_NAME" }}'
+- chart: '../charts/{{ requiredEnv "APP_NAME" }}'
   name: preview
   wait: true
   createNamespace: true
@@ -11,15 +7,16 @@ releases:
   values:
   - jx-values.yaml
   - values.yaml.gotmpl
+  - imagePullSecrets.yaml
   hooks:
   - events: ["presync"]
     showlogs: true
     command: "jx"
     args:
-      - secret
-      - copy
-      - --create-namespace
-      - --selector
-      - "secret.jenkins-x.io/replica-source=true"
-      - --to
-      - '{{ requiredEnv "PREVIEW_NAMESPACE" }}'
+    - secret
+    - copy
+    - --create-namespace
+    - --selector
+    - "secret.jenkins-x.io/replica-source=true"
+    - --to
+    - '{{ requiredEnv "PREVIEW_NAMESPACE" }}'
