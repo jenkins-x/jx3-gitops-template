@@ -1,3 +1,7 @@
+environments:
+  default:
+    values:
+    - jx-values.yaml
 releases:
 - chart: '../charts/{{ requiredEnv "APP_NAME" }}'
   name: preview
@@ -8,7 +12,6 @@ releases:
   - jx-values.yaml
   - imagePullSecrets.yaml
   - values.yaml.gotmpl
-  - imagePullSecrets.yaml
   hooks:
   - events: ["presync"]
     showlogs: true
