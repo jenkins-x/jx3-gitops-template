@@ -78,8 +78,11 @@ ingress:
 
 serviceAccount:
   enabled: true
+  name: ""
+  annotations: {}
 #  annotations:
 #    iam.gke.io/gcp-service-account: my-sa-in-gke
+  labels: {}
 #  labels:
 #    my-custom-label: value
 
