@@ -71,11 +71,20 @@ readinessProbe:
   successThreshold: 1
   timeoutSeconds: 1
 
-
 # custom ingress annotations on this service
 ingress:
   annotations:
 #      kubernetes.io/ingress.class: nginx
+
+serviceAccount:
+  enabled: true
+  name: ""
+  annotations: {}
+#  annotations:
+#    iam.gke.io/gcp-service-account: my-sa-in-gke
+  labels: {}
+#  labels:
+#    my-custom-label: value
 
 # values we use from the `jx-requirements.yml` file if we are using helmfile and helm 3
 jxRequirements:
