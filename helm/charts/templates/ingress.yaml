@@ -32,10 +32,5 @@ spec:
     - {{ .Values.service.name }}{{ .Values.jxRequirements.ingress.namespaceSubDomain }}{{ .Values.jxRequirements.ingress.domain }}
 {{- if hasKey .Values.jxRequirements.ingress.tls "secretName" }}
     secretName: "{{ .Values.jxRequirements.ingress.tls.secretName }}"
-{{- else if .Values.jxRequirements.ingress.tls.production }}
-    secretName: "jx/tls-{{ .Values.jxRequirements.ingress.domain | replace "." "-" }}-p"
-{{- else }}
-    secretName: "jx/tls-{{ .Values.jxRequirements.ingress.domain | replace "." "-" }}-s"
-{{- end }}
 {{- end }}
 {{- end }}
