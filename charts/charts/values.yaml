@@ -79,6 +79,8 @@ readinessProbe:
 ingress:
   annotations:
 #      kubernetes.io/ingress.class: nginx
+  tls:
+    secretName: ""
 
 serviceAccount:
   enabled: true
