@@ -30,17 +30,20 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
-{{- range $pkey, $pval := .Values.env }}
-        - name: {{ $pkey }}
-          value: {{ quote $pval }}
+        - name: VERSION
+          value: {{ .Chart.Version }}
+{{- if .Values.env }}
+{{ toYaml .Values.env | indent 8 }}
 {{- end }}
+{{- if .Values.envFrom }}
         envFrom:
-{{ toYaml .Values.envFrom | indent 10 }}
+{{ toYaml .Values.envFrom | indent 8 }}
+{{- end }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         livenessProbe:
           httpGet:
-            path: {{ .Values.probePath }}
+            path: {{ .Values.livenessProbe.probePath | default .Values.probePath }}
             port: {{ .Values.service.internalPort }}
           initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
           periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
@@ -48,7 +51,7 @@ spec:
           timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
         readinessProbe:
           httpGet:
-            path: {{ .Values.probePath }}
+            path: {{ .Values.readinessProbe.probePath | default .Values.probePath }}
             port: {{ .Values.service.internalPort }}
           periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
