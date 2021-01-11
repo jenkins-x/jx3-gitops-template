@@ -2,7 +2,7 @@
 
 set -e
 
-ZONE=${ZONE:-europe-west1-b}
+ZONE=${ZONE:-us-central1-a}
 LABELS=${LABELS:-mylabel=foo}
 
 source `dirname "$0"`/setenv.sh
