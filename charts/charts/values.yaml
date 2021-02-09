@@ -11,7 +11,7 @@ image:
 jx:
   imagePullSecrets: []
 
-# define environment variables here as a map of key: value
+# define environment variables here
 env:
 
 # enable this flag to use knative serve to deploy the app
